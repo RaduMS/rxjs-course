@@ -7,6 +7,7 @@ export function createHttpObservable(url:string) {
         const controller = new AbortController();
         const signal = controller.signal;
 
+        // signal poate sa anuleze un request
         fetch(url, {signal})
             .then(response => {
 
@@ -30,7 +31,7 @@ export function createHttpObservable(url:string) {
 
             });
 
-        return () => controller.abort()
+        return () => controller.abort();
 
 
     });

@@ -1,38 +1,37 @@
-
-
 import {Request, Response} from 'express';
-import {COURSES} from "./db-data";
-
+import {COURSES} from './db-data';
 
 
 export function getAllCourses(req: Request, res: Response) {
 
-/*
-    const error = (Math.random() >= 0.5);
+  // // uesd with secondRODWithObservableWithRetryWhen method
+  // const error = (Math.random() >= 0.5);
+  //
+  // if (error) {
+  //   console.log('ERROR loading courses!');
+  //   res.status(500).json({message: 'random error occurred.'});
+  // } else {
 
-    if (error) {
-        console.log("ERROR loading courses!");
-        res.status(500).json({message: 'random error occurred.'});
-    }
-    else { */
+    setTimeout(() => {
 
-        setTimeout(() => {
+      res.status(200).json({payload: Object.values(COURSES)});
 
-             res.status(200).json({payload:Object.values(COURSES)});
+      // used witn secondRODWithObservableWithCatchError method
+      // res.status(500).json({message: 'random error occurred.'});
 
-        }, 200);
+    }, 200);
 
-  //  }
+  // }
 }
 
 
 export function getCourseById(req: Request, res: Response) {
 
-    const courseId = req.params["id"];
+  const courseId = req.params['id'];
 
-    const courses:any = Object.values(COURSES);
+  const courses: any = Object.values(COURSES);
 
-    const course = courses.find(course => course.id == courseId);
+  const course = courses.find(course => course.id == courseId);
 
-    res.status(200).json(course);
+  res.status(200).json(course);
 }

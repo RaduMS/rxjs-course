@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, Subject, timer} from 'rxjs';
 import {Course} from '../model/course';
-import {delayWhen, filter, map, retryWhen, shareReplay, tap, withLatestFrom} from 'rxjs/operators';
+import {catchError, delayWhen, filter, map, retryWhen, shareReplay, tap, withLatestFrom} from 'rxjs/operators';
 import {createHttpObservable} from './util';
 import {fromPromise} from 'rxjs/internal-compatibility';
 
@@ -25,7 +25,8 @@ export class Store {
         http$
             .pipe(
                 tap(() => console.log('HTTP request executed')),
-                map(res => Object.values(res['payload']))
+                map(res => Object.values(res['payload'])),
+                catchError(err => err)
             )
             .subscribe(
                 courses => this.subject.next(courses)

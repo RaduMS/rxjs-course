@@ -1,12 +1,43 @@
 
 
-<div class="about">
+<!--<div class="about">-->
 
-    <h2>The RxJs In Practice Course</h2>
+<!--    <h2>The RxJs In Practice Course</h2>-->
 
-    <img class="course-image mat-elevation-z10"
-         src="https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png">
+<!--    <img class="course-image mat-elevation-z10"-->
+<!--         src="https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png">-->
+
+
+<!--</div>-->
+
+<div class="courses-panel">
+
+  <h3>All Courses</h3>
+
+  <mat-tab-group>
+
+    <mat-tab label="Beginners">
+
+      <courses-card-list
+        [courses]="beginnerCourses$ | async">
+
+      </courses-card-list>
+
+    </mat-tab>
+
+    <mat-tab label="Advanced">
+
+      <courses-card-list
+        [courses]="advancedCourses$ | async"
+
+      ></courses-card-list>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
 
 
 </div>
+
 
